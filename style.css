@@ -1,0 +1,559 @@
+/* =========================
+   Linktree - Estudio Jurídico (negro/oro + video)
+   ========================= */
+
+   :root{
+    --font-main: "Poppins", sans-serif;
+  
+    --gold: #F2C94C;
+    --bg: #0B0F14;
+    --glass: rgba(11, 15, 20, 0.55);
+    --glass-strong: rgba(11, 15, 20, 0.75);
+  
+    --text: rgba(255,255,255,0.92);
+    --muted: rgba(242,201,76,0.72);
+  
+    --border: rgba(242,201,76,0.20);
+    --border-strong: rgba(242,201,76,0.42);
+  
+    --radius: 22px;
+  }
+  
+  /* RESET */
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+  
+  html, body{ height: 100%; }
+  
+  body{
+    font-family: var(--font-main);
+    color: var(--text);
+    margin: 0;
+  
+    /* IMPORTANTE para que SCROLLEE bien */
+    overflow-x: hidden;
+    overflow-y: auto;
+  
+    display: flex;
+    justify-content: center;
+  
+    padding: 28px 18px;
+    background: var(--bg);
+    position: relative;
+  }
+  
+  /* ===== VIDEO BACKGROUND ===== */
+  .bg-video{
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -2;
+    pointer-events: none;
+  }
+  
+  /* Overlay para legibilidad */
+  body::before{
+    content:"";
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 12, 16, 0.62);
+    z-index: -1;
+  }
+  
+  /* CONTENEDOR */
+  .container{
+    width: min(96vw, 980px);
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    text-align: center;
+  
+    /* clave: NO poner overflow hidden acá */
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* HEADER */
+  .header{
+    padding-top: 6px;
+  }
+  
+  .logo-wrap{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 14px;
+  }
+  
+  .logo-banner{
+    width: 180px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 28px rgba(0,0,0,0.55));
+  }
+  
+  .header h1{
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-shadow: 0 8px 22px rgba(0,0,0,0.60);
+    font-size: 1.65rem;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle{
+    color: var(--muted);
+    font-size: 0.98rem;
+    line-height: 1.35;
+    text-shadow: 0 8px 22px rgba(0,0,0,0.60);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .tagline{
+    margin-top: 10px;
+    font-size: 0.92rem;
+    color: rgba(219, 219, 219, 0.925);
+  }
+  
+  /* LINKS */
+  .links-section{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  
+  .link-card{
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
+    align-items: center;
+  
+    padding: 16px 18px;
+    border-radius: 999px;
+  
+    text-decoration: none;
+    background: var(--glass);
+    color: var(--gold);
+  
+    border: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  
+    transition: transform .18s ease, border-color .18s ease, background .18s ease;
+  }
+  
+  .link-card:hover{
+    transform: translateY(-2px);
+    background: rgba(11, 15, 20, 0.70);
+    border-color: var(--border-strong);
+  }
+  
+  .link-card span{
+    justify-self: center;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  .icon-left{ justify-self: start; }
+  .icon-right{ justify-self: end; opacity: 0.9; }
+  
+  
+  /* CARDS */
+  .services{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    align-items: stretch;
+  }
+  
+  @media (min-width: 860px){
+    .services{ grid-template-columns: 1fr 1fr; }
+  }
+  
+  .content-card{
+    background: rgba(17, 24, 39, 0.82);
+    border: 1px solid rgba(242,201,76,0.16);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-align: left;
+  
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-content{
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .card-content h2{
+    color: #fff;
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+  
+  .card-content p{
+    color: rgba(255,255,255,0.70);
+    font-size: 0.93rem;
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+  
+  .mini-title{
+    margin: 8px 0 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  
+  .feature-list{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  
+  .feature-list li{
+    display: flex;
+    align-items: center;
+    font-size: 0.93rem;
+    color: rgba(255,255,255,0.88);
+  }
+  
+  .feature-list li i{
+    margin-right: 12px;
+    color: var(--gold);
+    width: 16px;
+    text-align: center;
+    flex: 0 0 16px;
+    font-size: 1.05rem; /* check más prolijo */
+  }
+  
+  /* CTA */
+  .action-btn{
+    margin-top: auto;
+  
+    display: block;
+    width: 100%;
+    text-align: center;
+  
+    padding: 14px;
+    border-radius: 999px;
+  
+    background: var(--glass-strong);
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 700;
+  
+    border: 1px solid rgba(242,201,76,0.35);
+    transition: transform .18s ease, border-color .18s ease, background .18s ease;
+  }
+  
+  .action-btn:hover{
+    transform: translateY(-1px);
+    background: rgba(11, 15, 20, 0.90);
+    border-color: rgba(242,201,76,0.55);
+  }
+  
+  /* FOOTER TRI */
+  .ps-footer.ps-footer--tri{
+    margin-top: 6px;
+    padding: 14px 18px 12px;
+    border-radius: var(--radius);
+  
+    background: rgba(11,15,20,0.40);
+    border: 1px solid rgba(242,201,76,0.16);
+  
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  
+  .ps-tri{
+    max-width: 250px;
+    margin: 0 auto;
+    padding: 0 12px;
+  
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .ps-ico{
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+  
+    text-decoration: none;
+    color: rgba(242,201,76,0.85);
+    background: rgba(11,15,20,0.18);
+    border: 1px solid rgba(242,201,76,0.22);
+  
+    transition: transform .18s ease, border-color .18s ease, background .18s ease;
+  }
+  
+  .ps-ico:hover{
+    transform: translateY(-2px);
+    background: rgba(11,15,20,0.35);
+    border-color: rgba(242,201,76,0.40);
+  }
+  
+  .ps-logo{
+    width: 92px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+  
+    /* TINTE AMARILLO (aproxima al --gold) */
+    filter: brightness(0) saturate(100%)
+            invert(83%) sepia(55%) saturate(750%)
+            hue-rotate(345deg) brightness(100%) contrast(105%);
+    opacity: 0.95;
+  }
+  
+  
+  .ps-text{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.92rem;
+    color: rgba(242,201,76,0.75);
+  }
+  
+  .ps-text strong{
+    color: rgba(242,201,76,0.95);
+    font-weight: 700;
+  }
+  
+  /* Mobile fine tuning */
+  @media (max-width: 420px){
+    body{ padding: 22px 14px; }
+    .logo-banner{ width: 155px; }
+    .header h1{ font-size: 1.45rem; }
+  }
+  
+  /* ===== Scroll Reveal ===== */
+  .reveal{
+    opacity: 0;
+    transform: translateY(0.9rem);
+    filter: blur(0.12rem);
+    transition: opacity 600ms ease, transform 600ms ease, filter 600ms ease;
+    will-change: opacity, transform, filter;
+  }
+  
+  .reveal.is-visible{
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  
+  /* Accesibilidad: si el usuario prefiere menos movimiento, no animamos */
+  @media (prefers-reduced-motion: reduce){
+    .reveal{
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* =========================
+   UPGRADES VISUALES (aditivos, no rompen nada)
+   ========================= */
+
+/* Hover solo donde existe hover (evita cosas raras en mobile) */
+@media (hover: hover) and (pointer: fine){
+
+  /* --- Botones tipo "premium glow" --- */
+  .link-card,
+  .action-btn{
+    position: relative;         /* para pseudo-elementos */
+    overflow: hidden;           /* recorta brillo dentro del borde redondo */
+  }
+
+  /* Brillo barrido (sheen) */
+  .link-card::before,
+  .action-btn::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-120%) skewX(-18deg);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(242,201,76,0.06) 35%,
+      rgba(242,201,76,0.16) 50%,
+      rgba(242,201,76,0.06) 65%,
+      transparent 100%
+    );
+    transition: transform 700ms ease;
+    pointer-events: none;
+  }
+
+  .link-card:hover::before,
+  .action-btn:hover::before{
+    transform: translateX(120%) skewX(-18deg);
+  }
+
+  /* Glow exterior sutil */
+  .link-card:hover,
+  .action-btn:hover{
+    box-shadow:
+      0 0.75rem 2.25rem rgba(0,0,0,0.35),
+      0 0 0.9rem rgba(242,201,76,0.12);
+  }
+
+  /* Arrow más “vivo”: se corre a la derecha */
+  .link-card .icon-right{
+    transition: transform 220ms ease, opacity 220ms ease;
+  }
+  .link-card:hover .icon-right{
+    transform: translateX(0.35rem);
+    opacity: 1;
+  }
+
+  /* Icono izquierdo: micro “pop” */
+  .link-card .icon-left{
+    transition: transform 220ms ease;
+  }
+  .link-card:hover .icon-left{
+    transform: scale(1.06);
+  }
+
+  /* Cards: lift + borde dorado más marcado */
+  .content-card{
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  }
+  .content-card:hover{
+    transform: translateY(-0.25rem);
+    border-color: rgba(242,201,76,0.26);
+    box-shadow:
+      0 1.2rem 3rem rgba(0,0,0,0.40),
+      0 0 1.1rem rgba(242,201,76,0.10);
+  }
+}
+
+/* --- Accent line arriba de cada card (queda re “legal pro”) --- */
+.content-card{
+  position: relative;
+}
+.content-card::after{
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 0;
+  height: 0.18rem;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(242,201,76,0.55) 50%,
+    transparent 100%
+  );
+  opacity: 0.0;
+  transform: translateY(-0.4rem);
+  transition: opacity 450ms ease, transform 450ms ease;
+  pointer-events: none;
+}
+
+/* aparece cuando el reveal se hace visible */
+.reveal.is-visible.content-card::after{
+  opacity: 0.9;
+  transform: translateY(0);
+}
+
+/* --- Mejora del reveal: un “micro-bounce” cuando aparece (suave) --- */
+.reveal.is-visible{
+  animation: revealPop 520ms ease;
+}
+
+@keyframes revealPop{
+  0%   { transform: translateY(0.9rem); }
+  60%  { transform: translateY(-0.10rem); }
+  100% { transform: translateY(0); }
+}
+
+/* --- Focus visible (accesible, queda prolijo con teclado) --- */
+.link-card:focus-visible,
+.action-btn:focus-visible{
+  outline: none;
+  box-shadow:
+    0 0 0 0.18rem rgba(242,201,76,0.35),
+    0 0.9rem 2.5rem rgba(0,0,0,0.35);
+  border-color: rgba(242,201,76,0.65);
+}
+
+/* --- Fondo: textura suave “noise” sin imagen (sutil) --- */
+body::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.10;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.05) 0,
+      rgba(255,255,255,0.05) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  mix-blend-mode: overlay;
+}
+
+/* Respeta reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .reveal.is-visible{ animation: none !important; }
+  .link-card::before,
+  .action-btn::before{ transition: none !important; }
+}
+
+/* ===== CTA WhatsApp: sacudida del botón completo (no rápida) ===== */
+/* Arranca solo cuando el reveal ya se activó */
+.reveal.is-visible.cta-wiggle{
+  transform-origin: 50% 60%;
+  animation: btnWiggle 3.8s ease-in-out infinite;
+}
+
+/* Pausa larga + sacudida media (tipo “sonajero”, pero elegante) */
+@keyframes btnWiggle{
+  0%, 72% { transform: translateY(0) translateX(0) rotate(0deg); }
+
+  76% { transform: translateY(0) translateX(-0.18rem) rotate(-1.4deg); }
+  80% { transform: translateY(0) translateX( 0.18rem) rotate( 1.4deg); }
+  84% { transform: translateY(0) translateX(-0.14rem) rotate(-1.0deg); }
+  88% { transform: translateY(0) translateX( 0.14rem) rotate( 1.0deg); }
+  92% { transform: translateY(0) translateX(-0.10rem) rotate(-0.7deg); }
+  96% { transform: translateY(0) translateX( 0.10rem) rotate( 0.7deg); }
+
+  100% { transform: translateY(0) translateX(0) rotate(0deg); }
+}
+
+/* Cuando vas a clickear: que se quede quieto */
+@media (hover: hover) and (pointer: fine){
+  .cta-wiggle:hover,
+  .cta-wiggle:focus-visible{
+    animation-play-state: paused;
+  }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce){
+  .reveal.is-visible.cta-wiggle{ animation: none !important; }
+}
+
