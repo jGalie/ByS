@@ -385,10 +385,11 @@ body::before{
   box-shadow: none;
   padding: 0;
 
-  filter: brightness(0) saturate(100%)
-          invert(83%) sepia(55%) saturate(750%)
-          hue-rotate(345deg) brightness(100%) contrast(105%);
-  opacity: 0.95;
+  /* TINTE AMARILLO (aproxima al --gold) */
+    filter: brightness(0) saturate(100%)
+            invert(83%) sepia(55%) saturate(750%)
+            hue-rotate(345deg) brightness(100%) contrast(105%);
+    opacity: 0.95;
 }
 
 .ps-text{
@@ -453,4 +454,20 @@ body::before{
 
 @media (prefers-reduced-motion: reduce){
   .reveal.is-visible.cta-wiggle{ animation: none !important; }
+}
+
+@media (max-width: 48rem){
+  /* el blur del video es pesadísimo en mobile */
+  .bg-video{
+    filter: brightness(0.85) saturate(1.05) !important;
+    transform: none !important;
+  }
+
+  /* backdrop-filter suele laggear */
+  .link-card,
+  .ps-footer,
+  .action-btn{
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
 }
