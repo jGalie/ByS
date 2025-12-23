@@ -1,37 +1,47 @@
 (() => {
-  const items = document.querySelectorAll(".reveal");
-  if (!items.length) return;
-
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const isPhone = window.matchMedia("(max-width: 40rem)").matches; // <= 640px
 
-  // Celular: hasta 40rem (tablet y desktop quedan con reveal)
-  const isPhone = window.matchMedia("(max-width: 40rem)").matches;
+  const revealItems = document.querySelectorAll(".reveal");
+  const wiggleBtn = document.querySelector(".cta-wiggle");
 
-  // Si es celular o el usuario pide menos animación: mostrar todo y NO observar
-  if (reduceMotion || isPhone) {
-    items.forEach((el) => {
+  // Si el usuario pide menos movimiento: mostramos todo y no animamos nada
+  if (reduceMotion) {
+    revealItems.forEach(el => {
       el.classList.add("is-visible");
       el.style.transitionDelay = "0ms";
     });
     return;
   }
 
+  // ✅ WIGGLE: siempre activo (celu / tablet / desktop)
+  if (wiggleBtn) wiggleBtn.classList.add("is-wiggling");
+
+  // ✅ CELU: sin reveal (para que no ande lento)
+  if (isPhone) {
+    revealItems.forEach(el => {
+      el.classList.add("is-visible");
+      el.style.transitionDelay = "0ms";
+    });
+    return;
+  }
+
+  // ✅ TABLET + DESKTOP: reveal normal
+  if (!revealItems.length) return;
+
   const observer = new IntersectionObserver(
     (entries, obs) => {
-      entries.forEach((entry) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
-          obs.unobserve(entry.target); // anima 1 vez y listo
+          obs.unobserve(entry.target);
         }
       });
     },
-    {
-      threshold: 0.15,
-      rootMargin: "0% 0% -10% 0%",
-    }
+    { threshold: 0.15, rootMargin: "0% 0% -10% 0%" }
   );
 
-  items.forEach((el, i) => {
+  revealItems.forEach((el, i) => {
     el.style.transitionDelay = `${Math.min(i * 60, 360)}ms`;
     observer.observe(el);
   });

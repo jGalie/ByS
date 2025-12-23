@@ -91,7 +91,7 @@ body::before{
     inset: 0;
     border-radius: inherit;
 
-    background: rgba(255, 215, 93, 0.082);
+    background: rgba(255, 215, 93, 0.034);
     backdrop-filter: blur(0.9rem);
     -webkit-backdrop-filter: blur(0.9rem);
 
@@ -429,31 +429,36 @@ body::before{
 }
 
 /* CTA Wiggle (botón completo, suave) */
-.reveal.is-visible.cta-wiggle{
+/* ===== CTA WhatsApp: wiggle SIEMPRE (celu/tablet/desktop) ===== */
+/* OJO: lo activamos con .is-wiggling para no pelear con el reveal */
+.cta-wiggle.is-wiggling{
   transform-origin: 50% 60%;
   animation: btnWiggle 3.8s ease-in-out infinite;
+  will-change: transform;
 }
 
 @keyframes btnWiggle{
   0%, 72% { transform: translateY(0) translateX(0) rotate(0deg); }
+
   76% { transform: translateY(0) translateX(-0.18rem) rotate(-1.4deg); }
   80% { transform: translateY(0) translateX( 0.18rem) rotate( 1.4deg); }
   84% { transform: translateY(0) translateX(-0.14rem) rotate(-1.0deg); }
   88% { transform: translateY(0) translateX( 0.14rem) rotate( 1.0deg); }
   92% { transform: translateY(0) translateX(-0.10rem) rotate(-0.7deg); }
   96% { transform: translateY(0) translateX( 0.10rem) rotate( 0.7deg); }
+
   100% { transform: translateY(0) translateX(0) rotate(0deg); }
 }
 
 @media (hover: hover) and (pointer: fine){
-  .cta-wiggle:hover,
-  .cta-wiggle:focus-visible{
+  .cta-wiggle.is-wiggling:hover,
+  .cta-wiggle.is-wiggling:focus-visible{
     animation-play-state: paused;
   }
 }
 
 @media (prefers-reduced-motion: reduce){
-  .reveal.is-visible.cta-wiggle{ animation: none !important; }
+  .cta-wiggle.is-wiggling{ animation: none !important; }
 }
 
 @media (max-width: 48rem){
@@ -475,11 +480,17 @@ body::before{
 /* ===== Desactivar Scroll Reveal SOLO en celular (tablet sí) ===== */
 /* 40rem ≈ 640px */
 @media (max-width: 40rem){
-  .reveal{
+  .reveal:not(.cta-wiggle){
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;
     transition: none !important;
     animation: none !important;
   }
+
+  /* y aseguramos wiggle en celu */
+  .cta-wiggle.is-wiggling{
+    animation: btnWiggle 3.8s ease-in-out infinite !important;
+  }
 }
+
