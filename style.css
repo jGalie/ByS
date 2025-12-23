@@ -47,7 +47,7 @@ body{
   pointer-events: none;
 
   /* blur suave + un poquito de control de contraste */
-  filter: blur(0.12rem) brightness(0.85) saturate(1.05);
+  filter: blur(0) brightness(0.85) saturate(1.05);
   transform: scale(1.08);
 }
 
@@ -469,5 +469,17 @@ body::before{
   .action-btn{
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
+  }
+}
+
+/* ===== Desactivar Scroll Reveal SOLO en celular (tablet sí) ===== */
+/* 40rem ≈ 640px */
+@media (max-width: 40rem){
+  .reveal{
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+    animation: none !important;
   }
 }
